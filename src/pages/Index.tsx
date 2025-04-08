@@ -6,6 +6,7 @@ import UseCaseCard from "@/components/UseCaseCard";
 import IntegrationChart from "@/components/IntegrationChart";
 import ProjectBrowser from "@/components/ProjectBrowser";
 import Header from "@/components/Header";
+import KeyBenefits from "@/components/KeyBenefits";
 
 const Index = () => {
   return (
@@ -68,6 +69,11 @@ const Index = () => {
               color="bg-aec-blue-dark"
             />
           </div>
+        </section>
+
+        {/* Benefici Chiave Section */}
+        <section>
+          <KeyBenefits />
         </section>
 
         {/* Integrazione delle tecnologie */}
