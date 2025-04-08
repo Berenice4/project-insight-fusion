@@ -45,7 +45,9 @@ const KeyBenefits = ({
       id: "coordination",
       title: "Coordinamento",
       description: "Migliora la gestione e l'allineamento tra le diverse discipline e fasi di progetto, riducendo gli errori e i conflitti.",
-      icon: Layers
+      icon: Layers,
+      hasDetailPage: true,
+      detailPageUrl: "/coordination"
     },
     {
       id: "visualization",
