@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Building2, Brain, Database, VrHeadset } from 'lucide-react';
+import { Building2, Brain, Database, Glasses } from 'lucide-react';
 
 const IntegrationChart = () => {
   return (
@@ -23,7 +23,7 @@ const IntegrationChart = () => {
       {/* MR Node */}
       <div className="absolute bottom-1/4 left-1/4 transform -translate-x-1/2 translate-y-1/2 bg-white rounded-full p-3 shadow-lg border-2 border-aec-blue">
         <div className="relative">
-          <VrHeadset className="h-8 w-8 md:h-10 md:w-10 text-aec-blue" />
+          <Glasses className="h-8 w-8 md:h-10 md:w-10 text-aec-blue" />
           <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs md:text-sm font-semibold">Realtà Mista</span>
         </div>
       </div>

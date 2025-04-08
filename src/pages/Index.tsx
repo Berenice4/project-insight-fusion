@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Building2, Brain, Database, VrHeadset, Zap } from 'lucide-react';
+import { Building2, Brain, Database, Glasses, Zap } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import TechCard from "@/components/TechCard";
 import UseCaseCard from "@/components/UseCaseCard";
@@ -50,7 +49,7 @@ const Index = () => {
             <TechCard
               title="Realtà Mista"
               description="AR e VR per sovrapporre informazioni digitali al mondo reale o immergersi completamente nel progetto virtuale."
-              icon={VrHeadset}
+              icon={Glasses}
               benefits={["Visualizzazione", "Training", "Verifica in cantiere", "Collaborazione remota"]}
               color="bg-aec-blue"
             />
