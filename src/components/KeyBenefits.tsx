@@ -6,12 +6,17 @@ import {
   CardContent
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 interface Benefit {
   id: string;
   title: string;
   description: string;
   icon: React.ElementType;
+  hasDetailPage?: boolean;
+  detailPageUrl?: string;
 }
 
 interface KeyBenefitsProps {
@@ -32,7 +37,9 @@ const KeyBenefits = ({
       id: "collaboration",
       title: "Collaborazione",
       description: "Facilita il lavoro di squadra tra tutti gli attori coinvolti nel progetto, con accesso condiviso alle stesse informazioni in tempo reale.",
-      icon: Users
+      icon: Users,
+      hasDetailPage: true,
+      detailPageUrl: "/collaboration"
     },
     {
       id: "coordination",
@@ -57,6 +64,8 @@ const KeyBenefits = ({
   const handleBenefitClick = (id: string) => {
     setActiveBenefit(id);
   };
+
+  const activeBenefitData = benefits.find(b => b.id === activeBenefit);
 
   return (
     <div className={cn("space-y-6", className)}>
@@ -148,6 +157,40 @@ const KeyBenefits = ({
                       ))}
                     </div>
                   </div>
+                  
+                  {benefit.hasDetailPage && (
+                    <div className="flex justify-end mt-4">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="ghost" className="text-aec-blue hover:bg-aec-blue/10">
+                            Anteprima dettagli
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-3xl">
+                          <div className="p-4">
+                            <h2 className="text-xl font-bold text-aec-blue-dark mb-4">Dettagli su {benefit.title}</h2>
+                            <p className="mb-4">
+                              Scopri tutti i dettagli su come la nostra piattaforma migliora la {benefit.title.toLowerCase()} 
+                              nel settore AEC attraverso l'integrazione di BIM, Realtà Mista, AI Generativa e CDE.
+                            </p>
+                            <div className="flex justify-end">
+                              <Link to={benefit.detailPageUrl || "#"}>
+                                <Button className="bg-aec-blue hover:bg-aec-blue-dark">
+                                  Esplora la pagina completa
+                                </Button>
+                              </Link>
+                            </div>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                      
+                      <Link to={benefit.detailPageUrl || "#"}>
+                        <Button className="ml-2 bg-aec-blue hover:bg-aec-blue-dark">
+                          Approfondisci
+                        </Button>
+                      </Link>
+                    </div>
+                  )}
                 </div>
               ))}
             </CardContent>
