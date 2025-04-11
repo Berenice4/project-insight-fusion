@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import UseCaseDetailLayout from '@/components/UseCaseDetailLayout';
 import { Card, CardContent } from '@/components/ui/card';
-import { Headset, Video, Book, Brain, Building, Users, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Headset, Video, Book, Brain, Building, Users, CheckCircle, AlertTriangle, HardHat, Wrench, Layers, Settings } from 'lucide-react';
 import SafetySimulation from '@/components/SafetySimulation';
 
 const ImmersiveTrainingDetail = () => {
   const [showSimulation, setShowSimulation] = useState(false);
-  const [currentScenario, setCurrentScenario] = useState<'height-work' | 'confined-space' | 'evacuation'>('height-work');
+  const [currentScenario, setCurrentScenario] = useState<
+    'height-work' | 'confined-space' | 'evacuation' | 'equipment-maintenance' | 'assembly' | 'building-management'
+  >('height-work');
 
-  const handleStartSimulation = (scenario: 'height-work' | 'confined-space' | 'evacuation') => {
+  const handleStartSimulation = (scenario: 
+    'height-work' | 'confined-space' | 'evacuation' | 'equipment-maintenance' | 'assembly' | 'building-management'
+  ) => {
     setCurrentScenario(scenario);
     setShowSimulation(true);
   };
@@ -207,7 +211,7 @@ const ImmersiveTrainingDetail = () => {
 
                 {/* Interactive Safety Simulation */}
                 <div className="mt-6">
-                  <h4 className="font-medium text-sm mb-3">Simulazione Interattiva:</h4>
+                  <h4 className="font-medium text-sm mb-3">Simulazioni Interattive:</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="relative group cursor-pointer">
                       <img 
@@ -217,6 +221,9 @@ const ImmersiveTrainingDetail = () => {
                       />
                       <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
                         <div className="text-white text-center p-4">
+                          <div className="flex justify-center mb-2">
+                            <HardHat className="h-8 w-8" />
+                          </div>
                           <h5 className="font-medium mb-2">Lavori in Quota</h5>
                           <button 
                             onClick={() => handleStartSimulation('height-work')}
@@ -236,6 +243,9 @@ const ImmersiveTrainingDetail = () => {
                       />
                       <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
                         <div className="text-white text-center p-4">
+                          <div className="flex justify-center mb-2">
+                            <AlertTriangle className="h-8 w-8" />
+                          </div>
                           <h5 className="font-medium mb-2">Spazi Confinati</h5>
                           <button 
                             onClick={() => handleStartSimulation('confined-space')}
@@ -244,31 +254,6 @@ const ImmersiveTrainingDetail = () => {
                             Avvia Simulazione
                           </button>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Interactive Safety Checklist */}
-                  <div className="mt-6 bg-aec-gray-light/30 p-4 rounded-lg">
-                    <h5 className="font-medium text-sm mb-3">Checklist Interattiva DPI:</h5>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-3 p-2 bg-white rounded hover:bg-aec-blue/5 transition-colors duration-200 cursor-pointer">
-                        <div className="h-6 w-6 rounded-full border-2 border-aec-blue flex items-center justify-center">
-                          <span className="text-aec-blue text-sm">1</span>
-                        </div>
-                        <span className="text-sm">Indossa il casco di protezione</span>
-                      </div>
-                      <div className="flex items-center gap-3 p-2 bg-white rounded hover:bg-aec-blue/5 transition-colors duration-200 cursor-pointer">
-                        <div className="h-6 w-6 rounded-full border-2 border-aec-blue flex items-center justify-center">
-                          <span className="text-aec-blue text-sm">2</span>
-                        </div>
-                        <span className="text-sm">Verifica l'imbracatura di sicurezza</span>
-                      </div>
-                      <div className="flex items-center gap-3 p-2 bg-white rounded hover:bg-aec-blue/5 transition-colors duration-200 cursor-pointer">
-                        <div className="h-6 w-6 rounded-full border-2 border-aec-blue flex items-center justify-center">
-                          <span className="text-aec-blue text-sm">3</span>
-                        </div>
-                        <span className="text-sm">Controlla i punti di ancoraggio</span>
                       </div>
                     </div>
                   </div>
@@ -327,6 +312,35 @@ const ImmersiveTrainingDetail = () => {
                     <span className="text-xs bg-aec-gray-light px-2 py-1 rounded-full">Diagnostica guasti</span>
                   </div>
                 </div>
+
+                {/* Maintenance Simulation */}
+                <div className="mt-6">
+                  <h4 className="font-medium text-sm mb-3">Simulazione Interattiva:</h4>
+                  <div className="relative group cursor-pointer h-60 rounded-lg overflow-hidden">
+                    <img 
+                      src="/maintenance-hvac.jpg" 
+                      alt="Manutenzione impianti" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                      <div className="text-white text-center p-6">
+                        <div className="flex justify-center mb-3">
+                          <Wrench className="h-12 w-12" />
+                        </div>
+                        <h5 className="font-medium mb-2 text-lg">Manutenzione Impianto HVAC</h5>
+                        <p className="text-sm mb-4 opacity-80">
+                          Impara le procedure di diagnostica e intervento su impianti di condizionamento
+                        </p>
+                        <button 
+                          onClick={() => handleStartSimulation('equipment-maintenance')}
+                          className="bg-aec-blue text-white px-6 py-2 rounded-full hover:bg-aec-blue-dark transition-colors duration-300"
+                        >
+                          Avvia Simulazione
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -356,6 +370,33 @@ const ImmersiveTrainingDetail = () => {
                     <span className="text-xs bg-aec-gray-light px-2 py-1 rounded-full">Elementi prefabbricati</span>
                     <span className="text-xs bg-aec-gray-light px-2 py-1 rounded-full">Sequenze di montaggio</span>
                     <span className="text-xs bg-aec-gray-light px-2 py-1 rounded-full">Connessioni strutturali</span>
+                  </div>
+                </div>
+
+                {/* Assembly Simulation */}
+                <div className="mt-6">
+                  <h4 className="font-medium text-sm mb-3">Simulazione Interattiva:</h4>
+                  <div className="bg-aec-gray-light/30 p-4 rounded-lg">
+                    <div className="flex items-center gap-4 mb-4">
+                      <Layers className="h-10 w-10 text-aec-blue" />
+                      <div>
+                        <h5 className="font-medium">Assemblaggio Strutturale</h5>
+                        <p className="text-xs text-aec-gray-dark">
+                          Impara il corretto ordine di montaggio e le tecniche di connessione
+                        </p>
+                      </div>
+                    </div>
+                    <img 
+                      src="/assembly-prefab.jpg" 
+                      alt="Assembaggio strutturale" 
+                      className="w-full h-40 object-cover rounded-lg mb-4"
+                    />
+                    <button 
+                      onClick={() => handleStartSimulation('assembly')}
+                      className="w-full bg-aec-blue text-white py-2 rounded-full text-sm hover:bg-aec-blue-dark transition-colors duration-300"
+                    >
+                      Avvia Simulazione
+                    </button>
                   </div>
                 </div>
               </div>
@@ -388,6 +429,43 @@ const ImmersiveTrainingDetail = () => {
                     <span className="text-xs bg-aec-gray-light px-2 py-1 rounded-full">Antincendio</span>
                     <span className="text-xs bg-aec-gray-light px-2 py-1 rounded-full">Evacuazione</span>
                     <span className="text-xs bg-aec-gray-light px-2 py-1 rounded-full">Ottimizzazione energetica</span>
+                  </div>
+                </div>
+
+                {/* Building Management Simulation */}
+                <div className="mt-6">
+                  <h4 className="font-medium text-sm mb-3">Simulazione Interattiva:</h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div 
+                      className="bg-aec-blue-dark rounded-lg p-3 text-white cursor-pointer hover:bg-aec-blue transition-colors duration-200"
+                      onClick={() => handleStartSimulation('building-management')}
+                    >
+                      <Settings className="h-6 w-6 mb-2" />
+                      <h5 className="font-medium text-sm">Sistema BMS</h5>
+                      <p className="text-xs opacity-80">
+                        Accesso e gestione
+                      </p>
+                    </div>
+                    <div 
+                      className="bg-aec-blue-dark rounded-lg p-3 text-white cursor-pointer hover:bg-aec-blue transition-colors duration-200"
+                      onClick={() => handleStartSimulation('building-management')}
+                    >
+                      <Building className="h-6 w-6 mb-2" />
+                      <h5 className="font-medium text-sm">Controllo Edificio</h5>
+                      <p className="text-xs opacity-80">
+                        Monitoraggio sistemi
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
+                    <button 
+                      onClick={() => handleStartSimulation('building-management')}
+                      className="w-full bg-aec-teal text-white py-3 rounded-lg text-sm hover:bg-aec-teal-dark transition-colors duration-300 flex items-center justify-center gap-2"
+                    >
+                      <Building className="h-4 w-4" />
+                      Simulazione Completa di Gestione Edificio
+                    </button>
                   </div>
                 </div>
               </div>
