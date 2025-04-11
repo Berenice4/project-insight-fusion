@@ -1,10 +1,18 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import UseCaseDetailLayout from '@/components/UseCaseDetailLayout';
 import { Card, CardContent } from '@/components/ui/card';
-import { Headset, Video, Book, Brain, Building, Users, CheckCircle } from 'lucide-react';
+import { Headset, Video, Book, Brain, Building, Users, CheckCircle, AlertTriangle } from 'lucide-react';
+import SafetySimulation from '@/components/SafetySimulation';
 
 const ImmersiveTrainingDetail = () => {
+  const [showSimulation, setShowSimulation] = useState(false);
+  const [currentScenario, setCurrentScenario] = useState<'height-work' | 'confined-space' | 'evacuation'>('height-work');
+
+  const handleStartSimulation = (scenario: 'height-work' | 'confined-space' | 'evacuation') => {
+    setCurrentScenario(scenario);
+    setShowSimulation(true);
+  };
+
   return (
     <UseCaseDetailLayout
       title="Formazione tecnica immersiva"
@@ -196,6 +204,97 @@ const ImmersiveTrainingDetail = () => {
                     <span className="text-xs bg-aec-gray-light px-2 py-1 rounded-full">Gestione emergenze</span>
                   </div>
                 </div>
+
+                {/* Interactive Safety Simulation */}
+                <div className="mt-6">
+                  <h4 className="font-medium text-sm mb-3">Simulazione Interattiva:</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="relative group cursor-pointer">
+                      <img 
+                        src="/safety-height-work.jpg" 
+                        alt="Lavori in quota" 
+                        className="w-full h-48 object-cover rounded-lg"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
+                        <div className="text-white text-center p-4">
+                          <h5 className="font-medium mb-2">Lavori in Quota</h5>
+                          <button 
+                            onClick={() => handleStartSimulation('height-work')}
+                            className="bg-aec-blue text-white px-4 py-2 rounded-full text-sm hover:bg-aec-blue-dark transition-colors duration-300"
+                          >
+                            Avvia Simulazione
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="relative group cursor-pointer">
+                      <img 
+                        src="/safety-confined-space.jpg" 
+                        alt="Spazi confinati" 
+                        className="w-full h-48 object-cover rounded-lg"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
+                        <div className="text-white text-center p-4">
+                          <h5 className="font-medium mb-2">Spazi Confinati</h5>
+                          <button 
+                            onClick={() => handleStartSimulation('confined-space')}
+                            className="bg-aec-blue text-white px-4 py-2 rounded-full text-sm hover:bg-aec-blue-dark transition-colors duration-300"
+                          >
+                            Avvia Simulazione
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Interactive Safety Checklist */}
+                  <div className="mt-6 bg-aec-gray-light/30 p-4 rounded-lg">
+                    <h5 className="font-medium text-sm mb-3">Checklist Interattiva DPI:</h5>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3 p-2 bg-white rounded hover:bg-aec-blue/5 transition-colors duration-200 cursor-pointer">
+                        <div className="h-6 w-6 rounded-full border-2 border-aec-blue flex items-center justify-center">
+                          <span className="text-aec-blue text-sm">1</span>
+                        </div>
+                        <span className="text-sm">Indossa il casco di protezione</span>
+                      </div>
+                      <div className="flex items-center gap-3 p-2 bg-white rounded hover:bg-aec-blue/5 transition-colors duration-200 cursor-pointer">
+                        <div className="h-6 w-6 rounded-full border-2 border-aec-blue flex items-center justify-center">
+                          <span className="text-aec-blue text-sm">2</span>
+                        </div>
+                        <span className="text-sm">Verifica l'imbracatura di sicurezza</span>
+                      </div>
+                      <div className="flex items-center gap-3 p-2 bg-white rounded hover:bg-aec-blue/5 transition-colors duration-200 cursor-pointer">
+                        <div className="h-6 w-6 rounded-full border-2 border-aec-blue flex items-center justify-center">
+                          <span className="text-aec-blue text-sm">3</span>
+                        </div>
+                        <span className="text-sm">Controlla i punti di ancoraggio</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Emergency Response Scenario */}
+                  <div className="mt-6 border-t pt-6">
+                    <h5 className="font-medium text-sm mb-3">Scenario di Emergenza:</h5>
+                    <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+                      <div className="flex items-start gap-3">
+                        <AlertTriangle className="h-5 w-5 text-red-500 flex-shrink-0 mt-1" />
+                        <div>
+                          <h6 className="font-medium text-sm text-red-700 mb-2">Simulazione di Evacuazione</h6>
+                          <p className="text-sm text-red-600 mb-3">
+                            Scenario: Incendio nell'area di stoccaggio materiali. Metti in pratica le procedure di evacuazione.
+                          </p>
+                          <button 
+                            onClick={() => handleStartSimulation('evacuation')}
+                            className="bg-red-600 text-white px-4 py-2 rounded-full text-sm hover:bg-red-700 transition-colors duration-300"
+                          >
+                            Inizia Evacuazione
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -310,6 +409,13 @@ const ImmersiveTrainingDetail = () => {
           </div>
         </div>
       </section>
+
+      {showSimulation && (
+        <SafetySimulation
+          scenario={currentScenario}
+          onClose={() => setShowSimulation(false)}
+        />
+      )}
     </UseCaseDetailLayout>
   );
 };
