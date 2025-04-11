@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Building2, Brain, Database, Glasses, Zap } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -171,36 +172,42 @@ const Index = () => {
               problem="Team multidisciplinari che faticano a coordinarsi e a comunicare in modo efficace su aspetti tecnici del progetto."
               solution="Sessioni di revisione immersive in VR dove tutti gli stakeholder possono interagire con il modello BIM e discutere soluzioni, anche da remoti."
               technologies={["BIM", "Realtà Virtuale", "CDE"]}
+              link="/use-cases/project-review"
             />
             <UseCaseCard
               title="Verifica in cantiere con AR"
               problem="Difficoltà nel verificare che la costruzione segua esattamente il progetto, con errori scoperti troppo tardi."
               solution="Visualizzazione in AR del modello BIM sovrapposto alla costruzione reale, con accesso immediato ai documenti tecnici dal CDE."
               technologies={["BIM", "Realtà Aumentata", "CDE"]}
+              link="/use-cases/ar-site-verification"
             />
             <UseCaseCard
               title="Ottimizzazione del layout impiantistico"
               problem="Progettazione manuale di percorsi impiantistici complessi che spesso porta a interferenze e inefficienze."
               solution="AI generativa che analizza il modello BIM e propone automaticamente percorsi ottimali, riducendo interferenze e materiali."
               technologies={["BIM", "AI Generativa", "CDE"]}
+              link="/use-cases/mep-optimization"
             />
             <UseCaseCard
               title="Formazione tecnica immersiva"
               problem="Difficoltà nel formare il personale su procedure complesse o pericolose in modo efficace e sicuro."
               solution="Ambienti di training in VR basati sui modelli BIM reali, con istruzioni generate dall'AI in base al profilo dell'utente."
               technologies={["BIM", "Realtà Virtuale", "AI Generativa"]}
+              link="/use-cases/immersive-training"
             />
             <UseCaseCard
               title="Reportistica automatizzata intelligente"
               problem="Ore spese nella creazione manuale di report di avanzamento, con informazioni spesso obsolete o incomplete."
               solution="Generazione automatica di report personalizzati basati sui dati più recenti dal BIM/CDE, con analisi AI delle tendenze e dei rischi."
               technologies={["CDE", "AI Generativa", "BIM"]}
+              link="/use-cases/auto-reporting"
             />
             <UseCaseCard
               title="Manutenzione predittiva"
               problem="Manutenzione reattiva costosa e interruzioni non pianificate dell'operatività dell'edificio."
               solution="Sistema che combina dati BIM, storici dal CDE e analisi AI per prevedere quando e dove sarà necessaria manutenzione."
               technologies={["BIM", "CDE", "AI Generativa"]}
+              link="/use-cases/predictive-maintenance"
             />
           </div>
         </section>
