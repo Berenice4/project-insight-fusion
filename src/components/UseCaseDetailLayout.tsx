@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -16,6 +16,11 @@ const UseCaseDetailLayout: React.FC<UseCaseDetailLayoutProps> = ({
   description, 
   children 
 }) => {
+  // Use effect to scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header with gradient background */}
